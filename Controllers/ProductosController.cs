@@ -8,9 +8,9 @@ namespace Tp_Programacion3.Controllers
     {
         // GET: api/productos
         [HttpGet]
-        public string GetTodos()
+        public ActionResult GetProductos()
         {
-            return "El controlador de productos funciona";
+            return Ok("Respuesta 200 OK: el endpoint de productos funciona.");
         }
     }
 }
