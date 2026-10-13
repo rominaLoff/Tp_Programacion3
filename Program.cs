@@ -1,3 +1,5 @@
+using Tp_Programacion3.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductoService, ProductoService>(); //Registra el servicio ProductoService para que pueda ser inyectado en los controladores. Esto permite que el controlador ProductosController pueda utilizar los métodos definidos en IProductoService.
 
 var app = builder.Build();
 
