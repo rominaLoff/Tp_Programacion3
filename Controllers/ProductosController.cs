@@ -26,24 +26,46 @@ public class ProductosController : ControllerBase
     
     public IActionResult GetProductos()
     {
-        var productos = _productoService.ObtenerTodos(); // Llama al método ObtenerTodos para obtener la lista de productos
-
-       
-        return Ok(productos); // Devuelve la lista de productos con un estado HTTP 200 OK
+        try
+        {
+            var productos = _productoService.ObtenerTodos();
+            return Ok(productos);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Ocurrió un error al obtener productos. Intente mas tarde");
+        }
+        //var productos = _productoService.ObtenerTodos(); // Llama al método ObtenerTodos para obtener la lista de productos
+             
+        //return Ok(productos); // Devuelve la lista de productos con un estado HTTP 200 OK
     }
 
     // GET/ api/productos/5
     [HttpGet("{id}")]
     public IActionResult GetProductoPorId(int id)
     {
-        var producto = _productoService.ObtenerPorId(id); // Llama al método ObtenerPorId para obtener un producto específico por su ID
-
-        if (producto == null)
+        try
         {
-            return NotFound("No se encontraron productos."); // Devuelve un estado HTTP 404 Not Found si no hay productos
+            var producto = _productoService.ObtenerPorId(id);
+            if (producto == null)
+            {
+                return NotFound("No se encontraron productos."); // Devuelve un estado HTTP 404 Not Found si no hay productos
+            }
+
+            return Ok(producto);
         }
+         catch (Exception)
+        {
+            return StatusCode(500, "Ocurrió un error al obtener productos. Intente mas tarde");
+        }
+        //var producto = _productoService.ObtenerPorId(id); // Llama al método ObtenerPorId para obtener un producto específico por su ID
+
+        //if (producto == null)
+        //{
+        //    return NotFound("No se encontraron productos."); // Devuelve un estado HTTP 404 Not Found si no hay productos
+        //}
         
-        return Ok(producto); // Devuelve el producto encontrado con un estado HTTP 200 OK
+       // return Ok(producto); // Devuelve el producto encontrado con un estado HTTP 200 OK
     }
     
 }
