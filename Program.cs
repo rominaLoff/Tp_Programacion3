@@ -1,4 +1,5 @@
 using Tp_Programacion3.Services;
+using Tp_Programacion3.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductoService, ProductoService>(); //Registra el servicio ProductoService para que pueda ser inyectado en los controladores. Esto permite que el controlador ProductosController pueda utilizar los métodos definidos en IProductoService.
 
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();// Registra el Repository: cuando pidan IProductoRepository, dar un ProductoRepository
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
