@@ -35,5 +35,5 @@ publish/
 .DS_Store
 Thumbs.db
 
-appsettings.jsonappsettings.json
+appsettings.json
 appsettings.*.json
